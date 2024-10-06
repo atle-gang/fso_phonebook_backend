@@ -26,14 +26,10 @@ let persons = [
 
 app.get("/info", (request, response) => {
   response.setHeader('Date', new Date().toUTCString());
-  const responseDate = JSON.stringify(response.getHeaders().date)
+  const responseDate = response.getHeaders().date
   response.send(
-    `<p>
-    Phone book has info for ${persons.length} people
-    </p>
-    <p>
-    ${responseDate}
-    <p/>
+    `<p>Phone book has info for ${persons.length} people</p>
+    <p>${responseDate}</p>
     `);
 })
 

@@ -48,7 +48,7 @@ app.get("/info", (request, response) => {
   response.setHeader("Date", new Date().toUTCString());
   const responseDate = response.getHeaders().date;
   response.send(
-    `<p>Phone book has info for ${persons.length} people</p>
+    `<p>Phone book has info of ${persons.length} people</p>
     <p>${responseDate}</p>
     `
   );

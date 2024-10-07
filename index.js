@@ -39,7 +39,7 @@ morgan.token("body", (req) => {
 })
 
 app.use(
-  morgan(':method :url :status :res[content-length] :response-time ms :body')
+  morgan(':method :url :status :res[content-length] - :response-time ms :body')
 )
 
 const generateId = () => String(Math.floor(Math.random() * (200 - 1) + 1));
@@ -104,7 +104,7 @@ app.post("/api/persons", (request, response) => {
   response.json(person);
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server running on port ${PORT}`)
+})

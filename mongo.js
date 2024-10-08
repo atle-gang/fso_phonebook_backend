@@ -7,11 +7,9 @@ if (!password) {
   process.exit(1);
 }
 
-
 const url = `mongodb+srv://atlegangcode:${password}@cluster0.blicn.mongodb.net/phoneBookApp?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
-
 mongoose.connect(url);
 
 const personSchema = new mongoose.Schema({
@@ -25,7 +23,7 @@ if (process.argv.length === 3) {
   Person.find({}).then(result => {
     console.log('Phone book:');
     result.forEach(person => {
-      console.log(`${ person.name } ${ person.number }`);
+      console.log(`${person.name} ${person.number}`);
     });
     mongoose.connection.close();
   }).catch(error => {
@@ -48,6 +46,6 @@ if (process.argv.length === 3) {
     mongoose.connection.close();
   });
 } else {
-  console.log("Please provide either just the password or the password, name, and number.")
+  console.log("Please provide either just the password or the password, name, and number.");
   mongoose.connection.close();
 }

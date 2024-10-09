@@ -78,7 +78,7 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch(error => next(error));
 });
 
-app.post("/api/persons", (request, response) => {
+app.post("/api/persons", (request, response, next) => {
   const body = request.body;
 
   if (!body.name || !body.number) {
@@ -87,22 +87,16 @@ app.post("/api/persons", (request, response) => {
     });
   }
 
-  const nameExists = persons.some((person) => person.name === body.name);
-
-  if (nameExists) {
-    return response.status(400).json({
-      error: "name must be unique"
-    });
-  }
-
-  const person = {
+  const newPerson = new Person({
     name: body.name,
-    id: generateId(),
     number: body.number
-  };
+  });
 
-  persons = persons.concat(person);
-  response.json(person);
+  newPerson.save()
+    .then(savedPerson => {
+      response.json(savedPerson);
+    })
+    .catch(error => next(error));
 });
 
 app.use(unknownEndPoint);

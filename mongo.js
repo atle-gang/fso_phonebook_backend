@@ -46,6 +46,6 @@ if (process.argv.length === 3) {
     mongoose.connection.close();
   });
 } else {
-  console.log("Please provide either just the password or the password, name, and number.");
+  console.log("Please provide either just the password or the password, name, and number");
   mongoose.connection.close();
 }
